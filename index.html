@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+    <title>Simulador de Campo Eléctrico</title>
+</head>
+<body>
+    <button class="toggle-btn transparente" onclick="toggleSidebar()" draggable="false">
+        <img id="toggle-icon" src="images/agregar.png" />
+    </button>
+  
+    <div class="sidebar" id="sidebar">
+        <h2>Agregar</h2>
+        <ul>
+            <li onclick="activarModo('positiva')" class="opcion" draggable="true">
+                <img class="tamanoCarga" src="images/mas.png"><span class="tipoCarga">Carga positiva</span>
+            </li>
+            <li onclick="activarModo('negativa')" class="opcion" draggable="true">
+                <img class="tamanoCarga" src="images/menos.png"><span class="tipoCarga">Carga negativa</span>
+            </li>
+            <li onclick="activarModo('prueba')" class="opcion" draggable="true">
+                <div class="cargaPruebaSB"></div><span class="tipoCarga">Carga de prueba</span>
+            </li>
+        </ul>
+    </div>
+  
+    <!-- Aquí agregamos el canvas para dibujar el campo eléctrico -->
+    <svg id="canvas">
+      <defs>
+        <marker id="punta" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="red" />
+        </marker>
+      </defs>
+    </svg>
+
+    <div id="contenedor"></div>
+    
+    <div id="menu-contextual" class="context-menu oculto">
+        <ul>
+            <li onclick="eliminarCargaSeleccionada()">🗑️ Eliminar carga</li>
+            <li id="lbl"><label for="input-carga">Carga:</label><input id="input-carga" type="number" step="any" /></li>
+            <!-- Aquí podrías meter más opciones en el futuro -->
+        </ul>
+    </div>
+    
+    <div id="basurero" title="Eliminar carga">
+        <span class="basureroE">🗑️</span>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+/* ========================
+   VARIABLES
+======================== */
+:root {
+    --ColorFondo: #102E50;
+    --ColorCuadricula: #F5C45E;
+    --GrosorCuadricula: 0.5px;
+    --TamanoCuadricula: 25px;
+    --TamanoBotones: clamp(2rem, 10vmin, 4.5rem);
+    --ColorSideBar: #102E60;
+    --ColorBordeSideBar: #F5C45E;
+    --ColorFontFondoAzul: #fec549;
+    --tiempoSideBar: 2s;
+}
+
+/* ========================
+   RESET & BASE
+======================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--ColorFondo);
+    background-image:
+      linear-gradient(to right, var(--ColorCuadricula) var(--GrosorCuadricula), transparent var(--GrosorCuadricula)),
+      linear-gradient(to bottom, var(--ColorCuadricula) var(--GrosorCuadricula), transparent var(--GrosorCuadricula)),
+      linear-gradient(to right, var(--ColorCuadricula) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--ColorCuadricula) 1px, transparent 1px);
+    background-size:
+      var(--TamanoCuadricula) var(--TamanoCuadricula),
+      var(--TamanoCuadricula) var(--TamanoCuadricula),
+      calc(var(--TamanoCuadricula) * 5) calc(var(--TamanoCuadricula) * 5),
+      calc(var(--TamanoCuadricula) * 5) calc(var(--TamanoCuadricula) * 5);
+}
+
+/* ========================
+   ELEMENTOS GENERALES
+======================== */
+#contenedor {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--ColorFondo);
+    background-image:
+      linear-gradient(to right, var(--ColorCuadricula) var(--GrosorCuadricula), transparent var(--GrosorCuadricula)),
+      linear-gradient(to bottom, var(--ColorCuadricula) var(--GrosorCuadricula), transparent var(--GrosorCuadricula)),
+      linear-gradient(to right, var(--ColorCuadricula) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--ColorCuadricula) 1px, transparent 1px);
+    background-size:
+      var(--TamanoCuadricula) var(--TamanoCuadricula),
+      var(--TamanoCuadricula) var(--TamanoCuadricula),
+      calc(var(--TamanoCuadricula) * 5) calc(var(--TamanoCuadricula) * 5),
+      calc(var(--TamanoCuadricula) * 5) calc(var(--TamanoCuadricula) * 5);
+}
+
+.transparente {
+    background-color: transparent;
+    border: 0;
+}
+
+.cursor-colocar {
+    cursor: crosshair;
+}
+
+/* ========================
+   BOTÓN DE TOGGLE
+======================== */
+.toggle-btn {
+    cursor: pointer;
+    width: var(--TamanoBotones);
+    transition: all ease 0.25s;
+    position: fixed;
+    top: 0.5vw;
+    left: 0.5vw;
+    z-index: 1001;
+}
+
+.toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+.toggle-btn img {
+    height: auto;
+    width: 100%;
+    border-radius: 100%;
+}
+
+.rotated {
+    transform: rotate(180deg);
+    transition: all ease var(--tiempoSideBar);
+}
+
+.rotated1 {
+    transform: rotate(-90deg);
+    transition: all ease var(--tiempoSideBar);
+}
+
+/* ========================
+   SIDEBAR
+======================== */
+.sidebar {
+    position: fixed;
+    top: 12.5%;
+    left: clamp(-15rem, -40vw, -10rem);
+    width: clamp(10rem, 40vw, 15rem);
+    height: clamp(10rem, 70%, 27rem);
+    padding: 20px;
+    background-color: var(--ColorSideBar);
+    border: 2.5px dashed var(--ColorBordeSideBar);
+    border-left: none;
+    color: var(--ColorFontFondoAzul);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.3s ease, all var(--tiempoSideBar) ease;
+    z-index: 1000;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar h2 {
+    font-size: clamp(1rem, 5vh, 2rem);
+}
+
+.sidebar ul {
+    width: 90%;
+}
+
+.sidebar ul li {
+    margin-top: 10vh;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+img.tamanoCarga {
+    width: clamp(0.5rem, 5vw, 3rem);
+}
+
+.sidebar .opcion {
+    cursor: pointer;
+}
+
+.sidebar .opcion.dragging {
+    opacity: 0.5;
+}
+
+.tipoCarga {
+    font-size: clamp(0.5rem, 5vh, 1.25rem);
+}
+
+/* ========================
+   CARGAS
+======================== */
+.cargaPositiva,
+.cargaNegativa,
+.cargaPrueba {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.cargaPositiva {
+    background-image: url("images/mas.png");
+}
+
+.cargaNegativa {
+    background-image: url("images/menos.png");
+}
+
+.cargaPrueba {
+    background-color: #FFD339;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.cargaPruebaSB {
+    width: clamp(0.5rem, 3vw, 1rem);
+    height: clamp(0.5rem, 3vw, 1rem);
+    border-radius: 50%;
+    background-color: #FFD339;
+    display: inline-block;
+}
+
+/* ========================
+   TOOLTIP EN CARGAS
+======================== */
+.cargaPositiva::after,
+.cargaNegativa::after,
+.cargaPrueba::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.cargaPositiva:hover::after,
+.cargaNegativa:hover::after,
+.cargaPrueba:hover::after {
+    opacity: 1;
+}
+
+/* ========================
+   MENÚ CONTEXTUAL
+======================== */
+.context-menu {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #999;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+    display: none;
+    min-width: 150px;
+    padding: 0.5em 0;
+}
+
+.context-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.context-menu li {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.context-menu li:hover {
+    background-color: #eee;
+}
+
+.oculto {
+    display: none !important;
+}
+
+.fantasma {
+    opacity: 0.4 !important;
+    pointer-events: none;
+    z-index: 1000;
+    cursor: grab;
+}
+
+#basurero {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 20px;
+    left: 20px;
+    width: var(--TamanoBotones);
+    height: var(--TamanoBotones);
+    font-size: clamp(1rem,5vmin,5vmin);
+    text-align: center;
+    line-height: 50px;
+    background-color: #BE3D2A;
+    color: white;
+    border-radius: 25%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 9999;
+    transition: background-color 0.2s;
+    user-select: none;
+}
+
+#basurero:hover {
+    background-color: #d32f2f;
+    user-select: none;
+}
+
+.fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* para que no estorbe al dar clic */
+    z-index: 10; /* asegúrate de que esté arriba si no se ve */
+  }
