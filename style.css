@@ -184,6 +184,7 @@ img.tamanoCarga {
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
+    z-index: 11;
 }
 
 .cargaPositiva {
